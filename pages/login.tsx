@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import useFetch from 'use-http'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
+import { UserContext } from '../components/UserContext'
 
 type FormData = {
   password: string
@@ -13,6 +14,7 @@ type FormData = {
 
 const Login: NextPage = () => {
   const router = useRouter()
+  const [user, setUser] = useContext(UserContext)
   const { post, response, error } = useFetch('/api/login')
   const {
     register,
@@ -28,12 +30,12 @@ const Login: NextPage = () => {
     }
   })
 
-  /*   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset()
+  useEffect(() => {
+    if (user) {
+      router.replace('/app')
     }
-  }, [isSubmitSuccessful, reset])
- */
+  }, [user])
+
   return (
     <div>
       <Head>

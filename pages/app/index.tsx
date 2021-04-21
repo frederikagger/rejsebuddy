@@ -1,16 +1,27 @@
 import { NextPage, GetServerSideProps, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 import jwt from 'jsonwebtoken'
+import { useContext, useEffect } from 'react'
+import { UserContext } from '../../components/UserContext'
+import useAuth from '../../hooks/useAuth'
 
 const App: NextPage = () => {
+  const [userObject, loading, error] = useAuth()
+  const [user, setUser] = useContext(UserContext)
+
+  useEffect(() => {
+    if (!loading && !error) setUser(userObject)
+  }, [userObject])
+
   return (
     <div>
       <Head>
         <title>Startside | Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='bg-primary min-h-screen'>
-        <h1 className='text-center'>Velkommen </h1>
+      <main>
+        {user && <h1 className='text-center'>Velkommen {user?.firstname} </h1>}
+        <div className='w-1/5 mx-auto'></div>
       </main>
     </div>
   )
