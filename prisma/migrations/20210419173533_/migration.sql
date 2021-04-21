@@ -11,6 +11,7 @@ CREATE TABLE `User` (
     `password` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` TIMESTAMP NOT NULL,
+    `role` ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
     `deleted` BOOLEAN NOT NULL DEFAULT false,
 UNIQUE INDEX `User.email_unique`(`email`),
 
@@ -26,7 +27,6 @@ CREATE TABLE `Post` (
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` TIMESTAMP NOT NULL,
     `deleted` BOOLEAN NOT NULL DEFAULT false,
-    `role` ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

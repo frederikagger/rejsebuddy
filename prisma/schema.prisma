@@ -23,6 +23,7 @@ model User {
   posts       Post[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt @db.Timestamp
+  role        Role     @default(USER)
   deleted     Boolean  @default(false)
 }
 
@@ -38,7 +39,6 @@ model Post {
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt @db.Timestamp
   deleted        Boolean         @default(false)
-  role           Role            @default(USER)
 }
 
 model Destination {
