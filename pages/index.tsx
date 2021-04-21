@@ -1,16 +1,16 @@
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { User } from 'prisma/prisma-client'
 import prisma from '../utils/prisma'
 
-const Home: React.FC<{ users: User[] }> = ({ users }) => {
+const Home: NextPage<{ users: User[] }> = ({ users }) => {
   return (
     <div>
       <Head>
         <title>Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='bg-primary min-h-screen'>
+      <main>
         {users.length === 0 ? (
           <div> Ingen brugere! </div>
         ) : (
