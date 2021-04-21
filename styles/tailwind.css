@@ -20,6 +20,15 @@
   button:focus {
     outline: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    background: white;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-500;
+    border-radius: 10px;
+  }
 }
 
 @layer components {
@@ -30,6 +39,6 @@
     @apply py-1 px-2 h-24 rounded-md w-full bg-gray-100;
   }
   .button {
-    @apply text-secondary border rounded-md hover:bg-secondary hover:text-white border-secondary font-semibold w-full py-2 px-2 appearance-none
+    @apply text-secondary border rounded-md hover:bg-secondary hover:text-white border-secondary font-semibold w-full py-2 px-2 appearance-none;
   }
 }
