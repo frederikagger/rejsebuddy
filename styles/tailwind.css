@@ -3,3 +3,42 @@
 @import 'tailwindcss/components';
 /* purgecss end ignore */
 @import 'tailwindcss/utilities';
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold leading-tight text-secondary;
+  }
+
+  h2 {
+    @apply text-2xl font-medium;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    background: white;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-500;
+    border-radius: 10px;
+  }
+}
+
+@layer components {
+  .inputfield {
+    @apply py-1 px-2 rounded-md w-full bg-gray-100;
+  }
+  .textarea {
+    @apply py-1 px-2 h-24 rounded-md w-full bg-gray-100;
+  }
+  .button {
+    @apply text-secondary border rounded-md hover:bg-secondary hover:text-white border-secondary font-semibold w-full py-2 px-2 appearance-none;
+  }
+}

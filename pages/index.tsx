@@ -1,28 +1,37 @@
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { PrismaClient, User } from 'prisma/prisma-client'
+import { User } from 'prisma/prisma-client'
+import prisma from '../utils/prisma'
 
-const prisma = new PrismaClient({})
-
-const Home: React.FC<{ user: User }> = ({ user }) => {
+const Home: NextPage<{ users: User[] }> = ({ users }) => {
   return (
     <div>
       <Head>
         <title>Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
-      {user ? <div> {user.firstname} </div> : <div> Ingen brugere! </div>}
-      <div className='bg-indigo-300 min-h-screen'></div>
+      <main>
+        {users.length === 0 ? (
+          <div> Ingen brugere! </div>
+        ) : (
+          <div className='text-center text-2xl'>
+            {users.map(user => (
+              <h1 className='' key={user.id}>
+                hej {user.firstname}
+              </h1>
+            ))}
+          </div>
+        )}
+      </main>
     </div>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const users = await prisma.user.findMany()
-  const user = users[0]
+  let users = await prisma.user.findMany()
+  users = JSON.parse(JSON.stringify(users)) // this is done because createdAt and updatedAt is not automatically being transformed to JSON
   return {
-    props: { user }
+    props: { users }
   }
 }
 
