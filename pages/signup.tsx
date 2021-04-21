@@ -1,6 +1,10 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
+import { NextPage } from 'next'
+import useFetch from 'use-http'
+import { useRouter } from 'next/router'
 
 type FormData = {
   firstname: string
@@ -12,7 +16,9 @@ type FormData = {
   profileText: string
 }
 
-const Signup: React.FC = () => {
+const Signup: NextPage = () => {
+  const { post, response, error } = useFetch('/api/user')
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -21,32 +27,25 @@ const Signup: React.FC = () => {
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async data => {
-    console.log(data)
-    const response = await fetch('/api/user', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-    const res = await response.json()
-    console.log(res)
+    await post(data)
+    if (response.ok) {
+      router.push('/login')
+    }
   })
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (isSubmitSuccessful) {
       reset()
     }
   }, [isSubmitSuccessful, reset])
-
+ */
   return (
     <div>
       <Head>
         <title>Signup | Rejsebuddy </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='bg-indigo-300 min-h-screen'>
+      <main>
         <div className='container mx-auto'>
           <form
             onSubmit={onSubmit}
@@ -55,9 +54,9 @@ const Signup: React.FC = () => {
             <h1 className='text-center mb-2'>Signup</h1>
             <input
               {...register('firstname', {
-                required: { message: 'Firstname required', value: true }
+                required: { message: 'Fornavn er påkrævet', value: true }
               })}
-              placeholder='First name'
+              placeholder='Fornavn'
               className='inputfield'
               type='text'
             />
@@ -66,9 +65,9 @@ const Signup: React.FC = () => {
             )}
             <input
               {...register('lastname', {
-                required: { value: true, message: 'Lastname required' }
+                required: { value: true, message: 'Efternavn er påkrævet' }
               })}
-              placeholder='Last name'
+              placeholder='Efternavn'
               className='inputfield'
               type='text'
             />
@@ -79,9 +78,9 @@ const Signup: React.FC = () => {
               {...register('password', {
                 minLength: {
                   value: 6,
-                  message: 'Password needs to be at least 6 characters'
+                  message: 'Password skal være på mindst 6 tegn'
                 },
-                required: { value: true, message: 'Password required' }
+                required: { value: true, message: 'Password er påkrævet' }
               })}
               placeholder='Password'
               className='inputfield'
@@ -94,9 +93,9 @@ const Signup: React.FC = () => {
               {...register('email', {
                 pattern: {
                   value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: 'You must enter an valid email'
+                  message: 'Indtast venligst en gyldig email'
                 },
-                required: { message: 'Email required', value: true }
+                required: { message: 'Email er påkrævet', value: true }
               })}
               placeholder='Email'
               className='inputfield'
@@ -107,9 +106,9 @@ const Signup: React.FC = () => {
             )}
             <input
               {...register('city', {
-                required: { message: 'City is required', value: true }
+                required: { message: 'By er påkrævet', value: true }
               })}
-              placeholder='City'
+              placeholder='By'
               className='inputfield'
               type='text'
             />
@@ -118,9 +117,9 @@ const Signup: React.FC = () => {
             )}
             <input
               {...register('birthday', {
-                required: { message: 'Birthday is required', value: true }
+                required: { message: 'Fødselsdato er påkrævet', value: true }
               })}
-              placeholder='birthday'
+              placeholder='Fødselsdag'
               className='inputfield'
               type='date'
             />
@@ -129,7 +128,10 @@ const Signup: React.FC = () => {
             )}
             <textarea
               {...register('profileText', {
-                required: { message: 'Profiletext is required', value: true }
+                required: {
+                  message: 'Indtast venligst en profiltekst',
+                  value: true
+                }
               })}
               placeholder='Profiletext'
               className='textarea'
@@ -138,8 +140,17 @@ const Signup: React.FC = () => {
               <div className='text-red-500'> {errors.profileText.message} </div>
             )}
             <button type='submit' disabled={isSubmitting} className='button'>
-              Send
+              Opret konto
             </button>
+            <div className='inline-block text-center'>
+              Har du allerede en profil?
+              <Link href='/login'>
+                <a className='text-secondary font-bold'> Login</a>
+              </Link>
+              {error && (
+                <div className='text-red-500'>Noget gik galt. Prøv igen.</div>
+              )}
+            </div>
           </form>
         </div>
       </main>
