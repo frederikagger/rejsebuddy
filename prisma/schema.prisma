@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  firstname   String
+  lastname    String
+  email       String   @unique
+  avatar      String?
+  city        String
+  birthday    DateTime @db.DateTime
+  profileText String
+  password    String
+  posts       Post[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @db.Timestamp
+  role        Role     @default(USER)
+  deleted     Boolean  @default(false)
+}
+
+model Post {
+  id             Int             @id @default(autoincrement())
+  author         User            @relation(fields: [id], references: [id])
+  destinations   Destination[]   @relation(references: [id])
+  description    String
+  travelTypes    TravelType[]    @relation(references: [id])
+  transportTypes TransportType[] @relation(references: [id])
+  startDate      DateTime        @db.Date
+  endDate        DateTime        @db.Date
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt @db.Timestamp
+  deleted        Boolean         @default(false)
+}
+
+model Destination {
+  id    Int    @id @default(autoincrement())
+  name  String
+  posts Post[] @relation(references: [id])
+}
+
+model TravelType {
+  id    Int    @id @default(autoincrement())
+  name  String
+  posts Post[] @relation(references: [id])
+}
+
+model TransportType {
+  id    Int    @id @default(autoincrement())
+  name  String
+  posts Post[] @relation(references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
+}
