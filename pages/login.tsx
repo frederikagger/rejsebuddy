@@ -31,14 +31,8 @@ const Login: NextPage = () => {
   })
 
   useEffect(() => {
-    if (user) {
-      router.replace('/app')
-    }
-  }, [user])
-
-  useEffect(() => {
-    console.log(error)
-  }, [error])
+    if (user) router.replace('/app')
+  }, [])
 
   if (loading)
     return (

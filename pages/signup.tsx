@@ -32,6 +32,10 @@ const Signup: NextPage = () => {
     }
   })
 
+  useEffect(() => {
+    if (user) router.replace('/app')
+  }, [])
+
   if (loading)
     return (
       <div className='container mx-auto'>
