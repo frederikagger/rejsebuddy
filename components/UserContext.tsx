@@ -3,11 +3,11 @@ import { useState, createContext } from 'react'
 
 export const UserContext = createContext(null)
 
-export const UserProvider: React.FC = props => {
+export const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User>()
   return (
     <UserContext.Provider value={[user, setUser]}>
-      {props.children}
+      {children}
     </UserContext.Provider>
   )
 }

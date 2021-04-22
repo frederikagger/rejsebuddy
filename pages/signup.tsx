@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { NextPage } from 'next'
 import useFetch from 'use-http'
 import { useRouter } from 'next/router'
+import { UserContext } from '../components/UserContext'
 
 type FormData = {
   firstname: string
@@ -17,28 +18,35 @@ type FormData = {
 }
 
 const Signup: NextPage = () => {
-  const { post, response, error } = useFetch('/api/user')
+  const { post, response, error, loading } = useFetch('/api/user')
+  const [user] = useContext(UserContext)
   const router = useRouter()
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { isSubmitSuccessful, isSubmitting, errors }
+    formState: { isSubmitting, errors }
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async data => {
     await post(data)
-    if (response.ok) {
-      router.push('/login')
-    }
+    if (response.ok) router.replace('/login')
   })
 
-  /*   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset()
-    }
-  }, [isSubmitSuccessful, reset])
- */
+  useEffect(() => {
+    if (user) router.replace('/app')
+  }, [])
+
+  if (loading)
+    return (
+      <div className='container mx-auto'>
+        <img
+          className='animate-spin h-10 w-10 mx-auto'
+          src='/images/loader.svg'
+          alt='loader'
+        />
+      </div>
+    )
+
   return (
     <div>
       <Head>
