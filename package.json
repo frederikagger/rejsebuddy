@@ -22,7 +22,7 @@
     "use-http": "^1.0.20"
   },
   "devDependencies": {
-    "@types/bcrypt": "^3.0.1",
+    "@types/bcryptjs": "^3.0.1",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^14.14.40",
     "@types/react": "^17.0.3",
