@@ -17,28 +17,32 @@ type FormData = {
 }
 
 const Signup: NextPage = () => {
-  const { post, response, error } = useFetch('/api/user')
+  const { post, response, error, loading } = useFetch('/api/user')
   const router = useRouter()
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { isSubmitSuccessful, isSubmitting, errors }
+    formState: { isSubmitting, errors }
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async data => {
     await post(data)
     if (response.ok) {
-      router.push('/login')
+      router.replace('/login')
     }
   })
 
-  /*   useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset()
-    }
-  }, [isSubmitSuccessful, reset])
- */
+  if (loading)
+    return (
+      <div className='container mx-auto'>
+        <img
+          className='animate-spin h-10 w-10 mx-auto'
+          src='/images/loader.svg'
+          alt='loader'
+        />
+      </div>
+    )
+
   return (
     <div>
       <Head>
