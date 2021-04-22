@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build & npx prisma migrate deploy",
+    "build": "next build",
     "start": "next start",
     "studio": "npx prisma studio",
     "migrate": "npx prisma migrate dev"
