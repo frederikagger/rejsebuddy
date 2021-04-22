@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const logout = () => {
     document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
     setUser(null)
-    router.replace('/app')
+    router.replace('/login')
   }
 
   /* if (loading) return <div>loading</div> */
