@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
 import { NextPage } from 'next'
 import useFetch from 'use-http'
 import { useRouter } from 'next/router'
+import { UserContext } from '../components/UserContext'
 
 type FormData = {
   firstname: string
@@ -18,6 +19,7 @@ type FormData = {
 
 const Signup: NextPage = () => {
   const { post, response, error, loading } = useFetch('/api/user')
+  const [user] = useContext(UserContext)
   const router = useRouter()
   const {
     register,
@@ -27,9 +29,7 @@ const Signup: NextPage = () => {
 
   const onSubmit = handleSubmit(async data => {
     await post(data)
-    if (response.ok) {
-      router.replace('/login')
-    }
+    if (response.ok) router.replace('/login')
   })
 
   useEffect(() => {
