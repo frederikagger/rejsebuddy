@@ -38,7 +38,7 @@ const Login: NextPage = () => {
     return (
       <div className='container mx-auto'>
         <img
-          className='animate-spin h-10 w-10 mx-auto'
+          className='animate-spin h-10 w-10 mx-auto text-secondary'
           src='/images/loader.svg'
           alt='loader'
         />
