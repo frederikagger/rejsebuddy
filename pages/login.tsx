@@ -14,8 +14,8 @@ type FormData = {
 
 const Login: NextPage = () => {
   const router = useRouter()
-  const [user, setUser] = useContext(UserContext)
-  const { post, response, error } = useFetch('/api/login')
+  const [user] = useContext(UserContext)
+  const { post, response, error, loading } = useFetch('/api/login')
   const {
     register,
     handleSubmit,
@@ -35,6 +35,21 @@ const Login: NextPage = () => {
       router.replace('/app')
     }
   }, [user])
+
+  useEffect(() => {
+    console.log(error)
+  }, [error])
+
+  if (loading)
+    return (
+      <div className='container mx-auto'>
+        <img
+          className='animate-spin h-10 w-10 mx-auto'
+          src='/images/loader.svg'
+          alt='loader'
+        />
+      </div>
+    )
 
   return (
     <div>
