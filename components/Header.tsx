@@ -256,79 +256,18 @@ const Header: React.FC = () => {
                           </div>
                         </a>
                       </div>
-                      <div className='px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8'>
-                        <div className='flow-root'>
-                          <a
-                            href='#'
-                            className='-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100'
-                          >
-                            {/*  <!-- Heroicon name: outline/play --> */}
-                            <svg
-                              className='flex-shrink-0 h-6 w-6 text-gray-400'
-                              xmlns='http://www.w3.org/2000/svg'
-                              fill='none'
-                              viewBox='0 0 24 24'
-                              stroke='currentColor'
-                              aria-hidden='true'
-                            >
-                              <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth='2'
-                                d='M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z'
-                              />
-                              <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth='2'
-                                d='M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-                              />
-                            </svg>
-                            <span className='ml-3'>Watch Demo</span>
-                          </a>
-                        </div>
-
-                        <div className='flow-root'>
-                          <a
-                            href='#'
-                            className='-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-100'
-                          >
-                            {/*  <!-- Heroicon name: outline/phone --> */}
-                            <svg
-                              className='flex-shrink-0 h-6 w-6 text-gray-400'
-                              xmlns='http://www.w3.org/2000/svg'
-                              fill='none'
-                              viewBox='0 0 24 24'
-                              stroke='currentColor'
-                              aria-hidden='true'
-                            >
-                              <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth='2'
-                                d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'
-                              />
-                            </svg>
-                            <span className='ml-3'>Contact Sales</span>
-                          </a>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 )}
               </div>
-
               <a
                 href='#'
                 className='text-base font-medium text-gray-500 hover:text-gray-900'
               >
                 Pricing
               </a>
-              <a
-                href='#'
-                className='text-base font-medium text-gray-500 hover:text-gray-900'
-              >
-                Docs
+              <a href='#' className='ctabutton'>
+                Opret opslag
               </a>
 
               <div className='relative'>
@@ -338,7 +277,7 @@ const Header: React.FC = () => {
                   className='text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
                   aria-expanded='false'
                 >
-                  <span>More</span>
+                  <span>Profil</span>
                   {/*  <!--
               Heroicon name: solid/chevron-down
 
@@ -496,51 +435,6 @@ const Header: React.FC = () => {
                           </div>
                         </a>
                       </div>
-                      <div className='px-5 py-5 bg-gray-50 sm:px-8 sm:py-8'>
-                        <div>
-                          <h3 className='text-sm tracking-wide font-medium text-gray-500 uppercase'>
-                            Recent Posts
-                          </h3>
-                          <ul className='mt-4 space-y-4'>
-                            <li className='text-base truncate'>
-                              <a
-                                href='#'
-                                className='font-medium text-gray-900 hover:text-gray-700'
-                              >
-                                Boost your conversion rate
-                              </a>
-                            </li>
-
-                            <li className='text-base truncate'>
-                              <a
-                                href='#'
-                                className='font-medium text-gray-900 hover:text-gray-700'
-                              >
-                                How to use search engine optimization to drive
-                                traffic to your site
-                              </a>
-                            </li>
-
-                            <li className='text-base truncate'>
-                              <a
-                                href='#'
-                                className='font-medium text-gray-900 hover:text-gray-700'
-                              >
-                                Improve your customer experience
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className='mt-5 text-sm'>
-                          <a
-                            href='#'
-                            className='font-medium text-indigo-600 hover:text-indigo-500'
-                          >
-                            View all posts{' '}
-                            <span aria-hidden='true'>&rarr;</span>
-                          </a>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 )}
@@ -564,9 +458,7 @@ const Header: React.FC = () => {
                   </a>
                 </Link>
                 <Link href='/signup'>
-                  <a className='ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-secondary hover:bg-blue-600'>
-                    Opret bruger
-                  </a>
+                  <a className='ctabutton'>Opret bruger</a>
                 </Link>
               </div>
             )}
@@ -588,14 +480,7 @@ const Header: React.FC = () => {
         <div className='absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden'>
           <div className='rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50'>
             <div className='pt-5 pb-6 px-5'>
-              <div className='flex items-center justify-between'>
-                <div>
-                  <img
-                    className='h-8 w-auto'
-                    src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
-                    alt='Workflow'
-                  />
-                </div>
+              <div className='flex justify-end items-center'>
                 <div className='-mr-2'>
                   <button
                     onClick={() =>
