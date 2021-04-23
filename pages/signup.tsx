@@ -6,6 +6,7 @@ import { NextPage } from 'next'
 import useFetch from 'use-http'
 import { useRouter } from 'next/router'
 import { UserContext } from '../components/UserContext'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 type FormData = {
   firstname: string
@@ -37,15 +38,7 @@ const Signup: NextPage = () => {
   }, [])
 
   if (loading)
-    return (
-      <div className='container mx-auto'>
-        <img
-          className='animate-spin h-10 w-10 mx-auto'
-          src='/images/loader.svg'
-          alt='loader'
-        />
-      </div>
-    )
+    return <LoadingSpinner/>
 
   return (
     <div>

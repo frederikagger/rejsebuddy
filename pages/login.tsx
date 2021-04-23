@@ -6,6 +6,7 @@ import useFetch from 'use-http'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { UserContext } from '../components/UserContext'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 type FormData = {
   password: string
@@ -34,16 +35,7 @@ const Login: NextPage = () => {
     if (user) router.replace('/app')
   }, [])
 
-  if (loading)
-    return (
-      <div className='container mx-auto'>
-        <img
-          className='animate-spin h-10 w-10 mx-auto text-secondary'
-          src='/images/loader.svg'
-          alt='loader'
-        />
-      </div>
-    )
+  if (loading) return <LoadingSpinner />
 
   return (
     <div>
