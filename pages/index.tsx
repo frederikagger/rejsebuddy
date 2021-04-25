@@ -2,7 +2,7 @@ import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { User } from 'prisma/prisma-client'
 import prisma from '../utils/prisma'
-import LandingPageLayout from '../components/LandingpageLayout'
+import LandingPageLayout from '../components/LandingPageLayout'
 
 const Home: NextPage<{ users: User[] }> = ({ users }) => {
   return (
