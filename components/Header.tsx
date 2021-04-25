@@ -1,19 +1,16 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { UserContext } from '../components/UserContext'
+import useUser from '../hooks/useUser'
 
 const Header: React.FC = () => {
   const [isSolutionOpen, setSolutionOpen] = useState(false)
   const [isMoreOpen, setIsMoreOpen] = useState(false)
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false)
-  const router = useRouter()
-  const [user, setUser] = useContext(UserContext)
+  const [user, setUser] = useUser()
 
   const logout: () => void = () => {
     document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
     setUser(null)
-    router.replace('/login')
   }
 
   return (
