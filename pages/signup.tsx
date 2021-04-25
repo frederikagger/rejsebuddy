@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { NextPage } from 'next'
 import useFetch from 'use-http'
 import { useRouter } from 'next/router'
-import LandingPageLayout from '../components/LandingpageLayout'
+import LandingPageLayout from '../components/LandingPageLayout'
 
 type FormData = {
   firstname: string

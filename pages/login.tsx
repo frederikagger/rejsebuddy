@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import useFetch from 'use-http'
 import { NextPage } from 'next'
 import jwt_decode from 'jwt-decode'
-import LandingPageLayout from '../components/LandingpageLayout'
+import LandingPageLayout from '../components/LandingPageLayout'
 import useUser from '../hooks/useUser'
 import { User } from '@prisma/client'
 
