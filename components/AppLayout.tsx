@@ -2,9 +2,10 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import useUser from '../hooks/useUser'
 
-/** This component is meant to wrap the app part of project and 
- * redirect to login if user is not logged in to reduce 
+/** This component is meant to wrap the app part of the project and 
+ * redirect to login if user is not logged in
  */
+
 const AppLayout = ({ children }) => {
   const [user] = useUser()
   const router = useRouter()

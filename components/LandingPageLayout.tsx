@@ -7,7 +7,7 @@ import { User } from '.prisma/client'
 
 
 /** This component is meant to wrap the landingpage part of
- *  the project keep a user logged in when the user has a
+ *  the project to keep a user logged in when the user has a
  *  valid jwt token
  */
 
