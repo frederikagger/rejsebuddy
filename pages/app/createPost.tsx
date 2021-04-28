@@ -47,12 +47,8 @@ const CreatePost: NextPage = () => {
                     message: 'Title er påkrævet',
                     value: true
                   },
-                  minLength: {
-                    value: 2,
-                    message: 'Titel skal være mindst 2 karaktere'
-                  },
                   maxLength: {
-                    value: 5,
+                    value: 40,
                     message: 'Titel er for lang'
                   }
                 })}
