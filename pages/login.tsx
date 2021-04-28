@@ -28,6 +28,7 @@ const Login: NextPage = () => {
       const { user } = jwt_decode(token) as { user: User }
       document.cookie = 'token=' + token
       setUser(user)
+      
     }
   })
 

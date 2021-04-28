@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import useUser from '../../hooks/useUser'
 import AppLayout from '../../components/AppLayout'
 import useFetch from 'use-http'
 import { useForm } from 'react-hook-form'
@@ -24,10 +23,6 @@ const CreatePost: NextPage = () => {
 
   const onSubmit = handleSubmit(async data => {
     await post(data)
-    console.log(response.data)
-    if (response.ok) {
-      console.log(response.data)
-    }
   })
 
   return (
@@ -57,7 +52,6 @@ const CreatePost: NextPage = () => {
                 placeholder='Titel'
                 type='text'
               />
-              {errors.title && console.log(errors.title.message)}
               {errors.title && (
                 <div className='text-red-500'>{errors.title.message}</div>
               )}
@@ -114,7 +108,7 @@ const CreatePost: NextPage = () => {
                 className='inputfield'
                 type='date'
               />
-              <button className='button' type='submit'>
+              <button disabled={isSubmitting} className='button' type='submit'>
                 Opret
               </button>
               {error && <div className='text-red-500'>{error.message}</div>}

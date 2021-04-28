@@ -47,4 +47,7 @@
   .form {
     @apply max-w-xl bg-white rounded-md mx-auto pt-2 pb-7 px-10;
   }
+  .card {
+    @apply bg-white rounded-lg overflow-hidden shadow p-8 mb-12;
+  }
 }
