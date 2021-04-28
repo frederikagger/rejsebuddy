@@ -20,7 +20,9 @@ UNIQUE INDEX `User.email_unique`(`email`),
 
 -- CreateTable
 CREATE TABLE `Post` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(191) NOT NULL,
+    `authorId` INTEGER NOT NULL,
     `description` VARCHAR(191) NOT NULL,
     `startDate` DATE NOT NULL,
     `endDate` DATE NOT NULL,
@@ -80,7 +82,7 @@ INDEX `_PostToTransportType_B_index`(`B`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Post` ADD FOREIGN KEY (`id`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Post` ADD FOREIGN KEY (`authorId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `_DestinationToPost` ADD FOREIGN KEY (`A`) REFERENCES `Destination`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
