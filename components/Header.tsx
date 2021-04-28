@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useUser from '../hooks/useUser'
+import { useRouter } from 'next/router'
 
 const Header: React.FC = () => {
   const [isSolutionOpen, setSolutionOpen] = useState(false)
   const [isMoreOpen, setIsMoreOpen] = useState(false)
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false)
   const [user, setUser] = useUser()
+  const router = useRouter()
 
   const logout: () => void = () => {
     document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
@@ -246,9 +248,9 @@ const Header: React.FC = () => {
                   </div>
                 )}
               </div>
-              <a href='#' className='ctabutton'>
-                Opret opslag
-              </a>
+              <Link href='/app/createPost'>
+                <a className='ctabutton'>Opret opslag</a>
+              </Link>
 
               <div className='relative'>
                 {/*  <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" --> */}
