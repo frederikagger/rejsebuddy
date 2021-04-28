@@ -32,17 +32,17 @@ const Login: NextPage = () => {
   })
 
   return (
-    <LandingPageLayout loading={loading}>
-      <div>
-        <Head>
-          <title>Login | Rejsebuddy </title>
-          <link rel='icon' href='/favicon.ico' />
-        </Head>
+    <div>
+      <Head>
+        <title>Login | Rejsebuddy </title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <LandingPageLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
             <form
               onSubmit={onSubmit}
-              className='max-w-xl bg-white rounded-md mx-auto pt-2 pb-7 px-10 flex flex-col gap-4'
+              className='form flex flex-col gap-4'
             >
               <h1 className='text-center mb-2'>Login</h1>
               <input
@@ -90,8 +90,8 @@ const Login: NextPage = () => {
             </form>
           </div>
         </main>
-      </div>
-    </LandingPageLayout>
+      </LandingPageLayout>
+    </div>
   )
 }
 
