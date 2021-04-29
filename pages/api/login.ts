@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
         const match = await bcrypt.compare(password, user.password)
         if (!match) return res.status(400).send({ data: 'Error!' })
-        const token = await jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '1h' })
+        const token = await jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: '10h' })
         return res.send({ token })
     }
     return res.status(400).send({ data: 'This endpoint only accepts POST requests' })
