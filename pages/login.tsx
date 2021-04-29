@@ -28,7 +28,6 @@ const Login: NextPage = () => {
       const { user } = jwt_decode(token) as { user: User }
       document.cookie = 'token=' + token
       setUser(user)
-      
     }
   })
 
@@ -41,11 +40,9 @@ const Login: NextPage = () => {
       <LandingPageLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
-            <form
-              onSubmit={onSubmit}
-              className='form flex flex-col gap-4'
-            >
-              <h1 className='text-center mb-2'>Login</h1>
+            <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
+              <h1 className='text-center mb-2'>Log ind</h1>
+              <label>Email</label>
               <input
                 {...register('email', {
                   pattern: {
@@ -61,15 +58,16 @@ const Login: NextPage = () => {
               {errors.email && (
                 <div className='text-red-500'> {errors.email.message} </div>
               )}
+              <label>Kodeord</label>
               <input
                 {...register('password', {
                   minLength: {
                     value: 6,
-                    message: 'Password skal være på mindst 6 tegn'
+                    message: 'Kodeordet skal være på mindst 6 tegn'
                   },
-                  required: { value: true, message: 'Password er påkrævet' }
+                  required: { value: true, message: 'Kodeord er påkrævet' }
                 })}
-                placeholder='Password'
+                placeholder='Kodeord'
                 className='inputfield'
                 type='password'
               />
@@ -77,7 +75,7 @@ const Login: NextPage = () => {
                 <div className='text-red-500'> {errors.password.message} </div>
               )}
               <button type='submit' disabled={isSubmitting} className='button'>
-                Login
+                Log ind
               </button>
               <div className='inline-block text-center'>
                 Har du ikke en profil?

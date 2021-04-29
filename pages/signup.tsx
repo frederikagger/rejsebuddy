@@ -33,17 +33,15 @@ const Signup: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Signup | Rejsebuddy </title>
+        <title>Opret Bruger | Rejsebuddy </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <LandingPageLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
-            <form
-              onSubmit={onSubmit}
-              className='form flex flex-col gap-4'
-            >
-              <h1 className='text-center mb-2'>Signup</h1>
+            <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
+              <h1 className='text-center mb-2'>Opret Bruger</h1>
+              <label>Fornavn</label>
               <input
                 {...register('firstname', {
                   required: { message: 'Fornavn er påkrævet', value: true }
@@ -55,6 +53,7 @@ const Signup: NextPage = () => {
               {errors.firstname && (
                 <div className='text-red-500'> {errors.firstname.message} </div>
               )}
+              <label>Efternavn</label>
               <input
                 {...register('lastname', {
                   required: { value: true, message: 'Efternavn er påkrævet' }
@@ -66,13 +65,14 @@ const Signup: NextPage = () => {
               {errors.lastname && (
                 <div className='text-red-500'> {errors.lastname.message} </div>
               )}
+              <label>Kodeord</label>
               <input
                 {...register('password', {
                   minLength: {
                     value: 6,
-                    message: 'Password skal være på mindst 6 tegn'
+                    message: 'Kodeordet skal være på mindst 6 tegn'
                   },
-                  required: { value: true, message: 'Password er påkrævet' }
+                  required: { value: true, message: 'Kodeord er påkrævet' }
                 })}
                 placeholder='Password'
                 className='inputfield'
@@ -81,6 +81,7 @@ const Signup: NextPage = () => {
               {errors.password && (
                 <div className='text-red-500'> {errors.password.message} </div>
               )}
+              <label>Email</label>
               <input
                 {...register('email', {
                   pattern: {
@@ -96,6 +97,7 @@ const Signup: NextPage = () => {
               {errors.email && (
                 <div className='text-red-500'> {errors.email.message} </div>
               )}
+              <label>By</label>
               <input
                 {...register('city', {
                   required: { message: 'By er påkrævet', value: true }
@@ -107,6 +109,7 @@ const Signup: NextPage = () => {
               {errors.city && (
                 <div className='text-red-500'> {errors.city.message} </div>
               )}
+              <label>Fødselsdato</label>
               <input
                 {...register('birthday', {
                   required: { message: 'Fødselsdato er påkrævet', value: true }
@@ -118,6 +121,7 @@ const Signup: NextPage = () => {
               {errors.birthday && (
                 <div className='text-red-500'> {errors.birthday.message} </div>
               )}
+              <label>Profiltekst</label>
               <textarea
                 {...register('profileText', {
                   required: {
@@ -137,7 +141,7 @@ const Signup: NextPage = () => {
               <div className='inline-block text-center'>
                 Har du allerede en profil?
                 <Link href='/login'>
-                  <a className='text-secondary font-bold'> Login</a>
+                  <a className='text-secondary font-bold'> Log ind</a>
                 </Link>
                 {error && (
                   <div className='text-red-500'>Noget gik galt. Prøv igen.</div>
