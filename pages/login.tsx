@@ -42,38 +42,45 @@ const Login: NextPage = () => {
           <div className='container mx-auto'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
               <h1 className='text-center mb-2'>Log ind</h1>
-              <label>Email</label>
-              <input
-                {...register('email', {
-                  pattern: {
-                    value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: 'Indtast venligst en gyldig email'
-                  },
-                  required: { message: 'Email er påkrævet', value: true }
-                })}
-                placeholder='Email'
-                className='inputfield'
-                type='email'
-              />
-              {errors.email && (
-                <div className='text-red-500'> {errors.email.message} </div>
-              )}
-              <label>Kodeord</label>
-              <input
-                {...register('password', {
-                  minLength: {
-                    value: 6,
-                    message: 'Kodeordet skal være på mindst 6 tegn'
-                  },
-                  required: { value: true, message: 'Kodeord er påkrævet' }
-                })}
-                placeholder='Kodeord'
-                className='inputfield'
-                type='password'
-              />
-              {errors.password && (
-                <div className='text-red-500'> {errors.password.message} </div>
-              )}
+              <label>
+                Email
+                <input
+                  {...register('email', {
+                    pattern: {
+                      value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Indtast venligst en gyldig email'
+                    },
+                    required: { message: 'Email er påkrævet', value: true }
+                  })}
+                  placeholder='Email'
+                  className='inputfield'
+                  type='email'
+                />
+                {errors.email && (
+                  <div className='text-red-500'> {errors.email.message} </div>
+                )}
+              </label>
+              <label>
+                Kodeord
+                <input
+                  {...register('password', {
+                    minLength: {
+                      value: 6,
+                      message: 'Kodeordet skal være på mindst 6 tegn'
+                    },
+                    required: { value: true, message: 'Kodeord er påkrævet' }
+                  })}
+                  placeholder='Kodeord'
+                  className='inputfield'
+                  type='password'
+                />
+                {errors.password && (
+                  <div className='text-red-500'>
+                    {' '}
+                    {errors.password.message}{' '}
+                  </div>
+                )}
+              </label>
               <button type='submit' disabled={isSubmitting} className='button'>
                 Log ind
               </button>
