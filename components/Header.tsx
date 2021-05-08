@@ -110,7 +110,7 @@ const Header: React.FC = () => {
                             </svg>
                             <div className='ml-4'>
                               <p className='text-base font-medium text-gray-900'>
-                                Opslag
+                                Rejse opslag
                               </p>
                             </div>
                           </a>
@@ -242,7 +242,7 @@ const Header: React.FC = () => {
                 )}
               </div>
               <Link href='/app/createPost'>
-                <a className='ctabutton'>Opret opslag</a>
+                <a className='ctabutton'>Opret Rejse</a>
               </Link>
 
               <div className='relative'>

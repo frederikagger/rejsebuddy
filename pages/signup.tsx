@@ -33,111 +33,146 @@ const Signup: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Signup | Rejsebuddy </title>
+        <title>Opret Bruger | Rejsebuddy </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <LandingPageLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
-            <form
-              onSubmit={onSubmit}
-              className='form flex flex-col gap-4'
-            >
-              <h1 className='text-center mb-2'>Signup</h1>
-              <input
-                {...register('firstname', {
-                  required: { message: 'Fornavn er påkrævet', value: true }
-                })}
-                placeholder='Fornavn'
-                className='inputfield'
-                type='text'
-              />
-              {errors.firstname && (
-                <div className='text-red-500'> {errors.firstname.message} </div>
-              )}
-              <input
-                {...register('lastname', {
-                  required: { value: true, message: 'Efternavn er påkrævet' }
-                })}
-                placeholder='Efternavn'
-                className='inputfield'
-                type='text'
-              />
-              {errors.lastname && (
-                <div className='text-red-500'> {errors.lastname.message} </div>
-              )}
-              <input
-                {...register('password', {
-                  minLength: {
-                    value: 6,
-                    message: 'Password skal være på mindst 6 tegn'
-                  },
-                  required: { value: true, message: 'Password er påkrævet' }
-                })}
-                placeholder='Password'
-                className='inputfield'
-                type='password'
-              />
-              {errors.password && (
-                <div className='text-red-500'> {errors.password.message} </div>
-              )}
-              <input
-                {...register('email', {
-                  pattern: {
-                    value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: 'Indtast venligst en gyldig email'
-                  },
-                  required: { message: 'Email er påkrævet', value: true }
-                })}
-                placeholder='Email'
-                className='inputfield'
-                type='email'
-              />
-              {errors.email && (
-                <div className='text-red-500'> {errors.email.message} </div>
-              )}
-              <input
-                {...register('city', {
-                  required: { message: 'By er påkrævet', value: true }
-                })}
-                placeholder='By'
-                className='inputfield'
-                type='text'
-              />
-              {errors.city && (
-                <div className='text-red-500'> {errors.city.message} </div>
-              )}
-              <input
-                {...register('birthday', {
-                  required: { message: 'Fødselsdato er påkrævet', value: true }
-                })}
-                placeholder='Fødselsdag'
-                className='inputfield'
-                type='date'
-              />
-              {errors.birthday && (
-                <div className='text-red-500'> {errors.birthday.message} </div>
-              )}
-              <textarea
-                {...register('profileText', {
-                  required: {
-                    message: 'Indtast venligst en profiltekst',
-                    value: true
-                  }
-                })}
-                placeholder='Profiletext'
-                className='textarea'
-              />
-              {errors.profileText && (
-                <div className='text-red-500'>{errors.profileText.message}</div>
-              )}
+            <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
+              <h1 className='text-center mb-2'>Opret Bruger</h1>
+              <label>
+                Fornavn
+                <input
+                  {...register('firstname', {
+                    required: { message: 'Fornavn er påkrævet', value: true }
+                  })}
+                  placeholder='Fornavn'
+                  className='inputfield'
+                  type='text'
+                />
+                {errors.firstname && (
+                  <div className='text-red-500'>
+                    {' '}
+                    {errors.firstname.message}{' '}
+                  </div>
+                )}
+              </label>
+              <label>
+                Efternavn
+                <input
+                  {...register('lastname', {
+                    required: { value: true, message: 'Efternavn er påkrævet' }
+                  })}
+                  placeholder='Efternavn'
+                  className='inputfield'
+                  type='text'
+                />
+                {errors.lastname && (
+                  <div className='text-red-500'>
+                    {' '}
+                    {errors.lastname.message}{' '}
+                  </div>
+                )}
+              </label>
+              <label>
+                Kodeord
+                <input
+                  {...register('password', {
+                    minLength: {
+                      value: 6,
+                      message: 'Kodeordet skal være på mindst 6 tegn'
+                    },
+                    required: { value: true, message: 'Kodeord er påkrævet' }
+                  })}
+                  placeholder='Password'
+                  className='inputfield'
+                  type='password'
+                />
+                {errors.password && (
+                  <div className='text-red-500'>
+                    {' '}
+                    {errors.password.message}{' '}
+                  </div>
+                )}
+              </label>
+              <label>
+                Email
+                <input
+                  {...register('email', {
+                    pattern: {
+                      value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Indtast venligst en gyldig email'
+                    },
+                    required: { message: 'Email er påkrævet', value: true }
+                  })}
+                  placeholder='Email'
+                  className='inputfield'
+                  type='email'
+                />
+                {errors.email && (
+                  <div className='text-red-500'> {errors.email.message} </div>
+                )}
+              </label>
+              <label>
+                By
+                <input
+                  {...register('city', {
+                    required: { message: 'By er påkrævet', value: true }
+                  })}
+                  placeholder='By'
+                  className='inputfield'
+                  type='text'
+                />
+                {errors.city && (
+                  <div className='text-red-500'> {errors.city.message} </div>
+                )}
+              </label>
+              <label>
+                Fødselsdato
+                <input
+                  {...register('birthday', {
+                    required: {
+                      message: 'Fødselsdato er påkrævet',
+                      value: true
+                    }
+                  })}
+                  placeholder='Fødselsdag'
+                  className='inputfield'
+                  type='date'
+                />
+                {errors.birthday && (
+                  <div className='text-red-500'>
+                    {' '}
+                    {errors.birthday.message}{' '}
+                  </div>
+                )}
+              </label>
+              <label>
+                Profiltekst
+                <textarea
+                  {...register('profileText', {
+                    required: {
+                      message: 'Indtast venligst en profiltekst',
+                      value: true
+                    }
+                  })}
+                  placeholder='Profiletext'
+                  className='textarea'
+                />
+                {errors.profileText && (
+                  <div className='text-red-500'>
+                    {errors.profileText.message}
+                  </div>
+                )}
+              </label>
               <button type='submit' disabled={isSubmitting} className='button'>
                 Opret konto
               </button>
               <div className='inline-block text-center'>
                 Har du allerede en profil?
                 <Link href='/login'>
-                  <a className='text-secondary font-bold'> Login</a>
+                  <a className='text-secondary font-bold'> Log ind</a>
                 </Link>
                 {error && (
                   <div className='text-red-500'>Noget gik galt. Prøv igen.</div>

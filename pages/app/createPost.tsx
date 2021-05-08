@@ -28,14 +28,15 @@ const CreatePost: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Opret opslag | Rejse Buddy</title>
+        <title>Opret Rejse | Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <AppLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
-              <h1 className='text-center'>Opret opslag</h1>
+              <h1 className='text-center'>Opret rejse</h1>
+              <label>Titel</label>
               <input
                 {...register('title', {
                   required: {
@@ -55,6 +56,7 @@ const CreatePost: NextPage = () => {
               {errors.title && (
                 <div className='text-red-500'>{errors.title.message}</div>
               )}
+              <label>Beskrivelse</label>
               <textarea
                 className='textarea'
                 {...register('description', {
@@ -65,6 +67,7 @@ const CreatePost: NextPage = () => {
                 })}
                 placeholder='Beskrivelse'
               ></textarea>
+              <label>Vælg destination</label>
               <select
                 {...register('destinations', {
                   required: { message: 'Destination er påkrævet', value: true }
@@ -77,6 +80,7 @@ const CreatePost: NextPage = () => {
                 <option value='Frankrig'>Frankrig</option>
                 <option value='Sverige'>Sverige</option>
               </select>
+              <label>Vælg transportform</label>
               <select
                 {...register('travelTypes', {
                   required: {
@@ -92,6 +96,7 @@ const CreatePost: NextPage = () => {
                 <option value='Båd'>Båd</option>
                 <option value='Cykel'>Cykel</option>
               </select>
+              <label>Vælg start dato</label>
               <input
                 {...register('startDate', {
                   required: { message: 'Startdato er påkrævet', value: true }
@@ -100,6 +105,7 @@ const CreatePost: NextPage = () => {
                 className='inputfield'
                 type='date'
               />
+              <label>Vælg slutdato</label>
               <input
                 {...register('endDate', {
                   required: { message: 'Slutdato er påkrævet', value: true }
@@ -109,7 +115,7 @@ const CreatePost: NextPage = () => {
                 type='date'
               />
               <button disabled={isSubmitting} className='button' type='submit'>
-                Opret
+                Opret rejse!
               </button>
               {error && <div className='text-red-500'>{error.message}</div>}
               {response.ok && (
