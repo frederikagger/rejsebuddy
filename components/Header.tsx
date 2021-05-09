@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                 </a>
               </Link>
               <Link href='/app/createPost'>
-                <a className='ctabutton'>Opret opslag</a>
+                <a className='ctabutton'>Opret Rejse</a>
               </Link>
             </nav>
           )}
