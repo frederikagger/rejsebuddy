@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form'
 import { NextPage } from 'next'
 import useFetch from 'use-http'
 import { useRouter } from 'next/router'
-import LandingPageLayout from '../components/LandingPageLayout'
+import AppLayout from '../components/AppLayout'
+
 
 type FormData = {
   firstname: string
@@ -36,7 +37,7 @@ const Signup: NextPage = () => {
         <title>Opret Bruger | Rejsebuddy </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <LandingPageLayout loading={loading}>
+      <AppLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
@@ -53,8 +54,7 @@ const Signup: NextPage = () => {
                 />
                 {errors.firstname && (
                   <div className='text-red-500'>
-                    {' '}
-                    {errors.firstname.message}{' '}
+                    {errors.firstname.message}
                   </div>
                 )}
               </label>
@@ -70,8 +70,7 @@ const Signup: NextPage = () => {
                 />
                 {errors.lastname && (
                   <div className='text-red-500'>
-                    {' '}
-                    {errors.lastname.message}{' '}
+                    {errors.lastname.message}
                   </div>
                 )}
               </label>
@@ -81,9 +80,9 @@ const Signup: NextPage = () => {
                   {...register('password', {
                     minLength: {
                       value: 6,
-                      message: 'Kodeordet skal være på mindst 6 tegn'
+                      message: 'Password skal være på mindst 6 tegn'
                     },
-                    required: { value: true, message: 'Kodeord er påkrævet' }
+                    required: { value: true, message: 'Password er påkrævet' }
                   })}
                   placeholder='Password'
                   className='inputfield'
@@ -91,8 +90,7 @@ const Signup: NextPage = () => {
                 />
                 {errors.password && (
                   <div className='text-red-500'>
-                    {' '}
-                    {errors.password.message}{' '}
+                    {errors.password.message}
                   </div>
                 )}
               </label>
@@ -143,8 +141,7 @@ const Signup: NextPage = () => {
                 />
                 {errors.birthday && (
                   <div className='text-red-500'>
-                    {' '}
-                    {errors.birthday.message}{' '}
+                    {errors.birthday.message}
                   </div>
                 )}
               </label>
@@ -181,7 +178,7 @@ const Signup: NextPage = () => {
             </form>
           </div>
         </main>
-      </LandingPageLayout>
+      </AppLayout>
     </div>
   )
 }

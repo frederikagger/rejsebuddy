@@ -3,7 +3,7 @@ import Head from 'next/head'
 import AppLayout from '../../components/AppLayout'
 import useFetch from 'use-http'
 import { useState, useEffect } from 'react'
-import PostComponent, {PostAuthor} from '../../components/PostComponent'
+import PostComponent, { PostAuthor } from '../../components/PostComponent'
 
 const Posts: NextPage = () => {
   const { loading, error, response, data } = useFetch('/api/posts', [])
@@ -21,7 +21,7 @@ const Posts: NextPage = () => {
         <title>Opslag | Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <AppLayout loading={loading}>
+      <AppLayout loading={loading} auth>
         <main>
           <div className='container mx-auto'>
             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-10'>

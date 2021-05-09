@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import useFetch from 'use-http'
 import { NextPage } from 'next'
 import jwt_decode from 'jwt-decode'
-import LandingPageLayout from '../components/LandingPageLayout'
+import AppLayout from '../components/AppLayout'
 import useUser from '../hooks/useUser'
 import { User } from '@prisma/client'
 
@@ -37,7 +37,7 @@ const Login: NextPage = () => {
         <title>Login | Rejsebuddy </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <LandingPageLayout loading={loading}>
+      <AppLayout loading={loading}>
         <main>
           <div className='container mx-auto'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
@@ -66,19 +66,16 @@ const Login: NextPage = () => {
                   {...register('password', {
                     minLength: {
                       value: 6,
-                      message: 'Kodeordet skal være på mindst 6 tegn'
+                      message: 'Password skal være på mindst 6 tegn'
                     },
-                    required: { value: true, message: 'Kodeord er påkrævet' }
+                    required: { value: true, message: 'Password er påkrævet' }
                   })}
-                  placeholder='Kodeord'
+                  placeholder='Password'
                   className='inputfield'
                   type='password'
                 />
                 {errors.password && (
-                  <div className='text-red-500'>
-                    {' '}
-                    {errors.password.message}{' '}
-                  </div>
+                  <div className='text-red-500'>{errors.password.message}</div>
                 )}
               </label>
               <button type='submit' disabled={isSubmitting} className='button'>
@@ -96,7 +93,7 @@ const Login: NextPage = () => {
             </form>
           </div>
         </main>
-      </LandingPageLayout>
+      </AppLayout>
     </div>
   )
 }

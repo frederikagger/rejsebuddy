@@ -10,7 +10,9 @@ const Header: React.FC = () => {
   const [user, setUser] = useUser()
 
   const logout: () => void = () => {
-    document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
+    document.cookie =
+      'token=; expires = Thu, 01 Jan 1970 00:00:00 GMT;PATH=/app'
+    document.cookie = 'token=; expires = Thu, 01 Jan 1970 00:00:00 GMT;PATH=/' // this is a hack that solves that ensures the user is logged out
     setUser(null)
   }
 
@@ -175,10 +177,7 @@ const Header: React.FC = () => {
               <div>
                 {user && (
                   <button
-                    onClick={() => {
-                      logout()
-                      setIsMobileDropdownOpen(false)
-                    }}
+                    onClick={() => logout()}
                     className='w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700'
                   >
                     Log ud
