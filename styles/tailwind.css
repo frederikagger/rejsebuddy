@@ -42,7 +42,7 @@
     @apply text-secondary border rounded-md hover:bg-secondary hover:text-white border-secondary font-semibold w-full py-2 px-2 appearance-none;
   }
   .ctabutton {
-    @apply ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-secondary hover:bg-blue-600;
+    @apply whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-primary rounded-md shadow-sm text-base font-medium text-primary hover:underline appearance-none;
   }
   .form {
     @apply max-w-xl bg-white rounded-md mx-auto pt-2 pb-7 px-10;
