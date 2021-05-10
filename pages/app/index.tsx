@@ -12,7 +12,7 @@ const App: NextPage = () => {
         <title>Startside | Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <AppLayout>
+      <AppLayout auth>
         <main>
           {user && <h1 className='text-center'>Velkommen {user.firstname} </h1>}
           <div className='w-1/5 mx-auto'></div>

@@ -2,7 +2,8 @@ import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { User } from 'prisma/prisma-client'
 import prisma from '../utils/prisma'
-import LandingPageLayout from '../components/LandingPageLayout'
+import AppLayout from '../components/AppLayout'
+
 
 const Home: NextPage<{ users: User[] }> = ({ users }) => {
   return (
@@ -11,7 +12,7 @@ const Home: NextPage<{ users: User[] }> = ({ users }) => {
         <title>Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <LandingPageLayout>
+      <AppLayout>
         <main>
           {users.length === 0 ? (
             <div> Ingen brugere! </div>
@@ -25,7 +26,7 @@ const Home: NextPage<{ users: User[] }> = ({ users }) => {
             </div>
           )}
         </main>
-      </LandingPageLayout>
+      </AppLayout>
     </div>
   )
 }
