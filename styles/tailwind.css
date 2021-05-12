@@ -10,11 +10,15 @@
   }
 
   h2 {
-    @apply text-2xl font-medium;
+    @apply text-2xl font-medium text-secondary;
   }
 
   h3 {
-    @apply text-xl font-bold;
+    @apply text-xl font-bold text-secondary;
+  }
+
+  p {
+    @apply text-secondary;
   }
 
   button:focus {
@@ -45,9 +49,9 @@
     @apply whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-primary rounded-md shadow-sm text-base font-medium text-primary hover:underline appearance-none;
   }
   .form {
-    @apply max-w-xl bg-white rounded-md mx-auto pt-2 pb-7 px-10;
+    @apply max-w-xl bg-white rounded-md mx-auto pt-3 pb-7 px-10;
   }
   .card {
-    @apply bg-white rounded-lg overflow-hidden shadow p-8 mb-12;
+    @apply bg-white rounded-lg overflow-hidden shadow px-6 py-4;
   }
 }
