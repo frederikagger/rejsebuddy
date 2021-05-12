@@ -36,84 +36,99 @@ const CreatePost: NextPage = () => {
           <div className='container mx-auto'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
               <h1 className='text-center'>Opret rejse</h1>
-              <label>Titel</label>
-              <input
-                {...register('title', {
-                  required: {
-                    message: 'Title er påkrævet',
-                    value: true
-                  },
-                  maxLength: {
-                    value: 40,
-                    message: 'Titel er for lang'
-                  }
-                })}
-                className='inputfield'
-                name='title'
-                placeholder='Titel'
-                type='text'
-              />
-              {errors.title && (
-                <div className='text-red-500'>{errors.title.message}</div>
-              )}
-              <label>Beskrivelse</label>
-              <textarea
-                className='textarea'
-                {...register('description', {
-                  required: {
-                    message: 'En beskrivelse er påkrævet',
-                    value: true
-                  }
-                })}
-                placeholder='Beskrivelse'
-              ></textarea>
-              <label>Vælg destination</label>
-              <select
-                {...register('destinations', {
-                  required: { message: 'Destination er påkrævet', value: true }
-                })}
-                className='inputfield'
-                name='destinations'
-              >
-                <option value='Spanien'>Spanien</option>
-                <option value='Italien'>Italien</option>
-                <option value='Frankrig'>Frankrig</option>
-                <option value='Sverige'>Sverige</option>
-              </select>
-              <label>Vælg transportform</label>
-              <select
-                {...register('travelTypes', {
-                  required: {
-                    message: 'Transportmiddel er påkrævet',
-                    value: true
-                  }
-                })}
-                className='inputfield'
-                name='travelTypes'
-              >
-                <option value='Fly'>Fly</option>
-                <option value='Bil'>Bil</option>
-                <option value='Båd'>Båd</option>
-                <option value='Cykel'>Cykel</option>
-              </select>
-              <label>Vælg start dato</label>
-              <input
-                {...register('startDate', {
-                  required: { message: 'Startdato er påkrævet', value: true }
-                })}
-                placeholder='Start dato'
-                className='inputfield'
-                type='date'
-              />
-              <label>Vælg slutdato</label>
-              <input
-                {...register('endDate', {
-                  required: { message: 'Slutdato er påkrævet', value: true }
-                })}
-                placeholder='Slut dato'
-                className='inputfield'
-                type='date'
-              />
+              <label>
+                Titel
+                <input
+                  {...register('title', {
+                    required: {
+                      message: 'Title er påkrævet',
+                      value: true
+                    },
+                    maxLength: {
+                      value: 40,
+                      message: 'Titel er for lang'
+                    }
+                  })}
+                  className='inputfield'
+                  name='title'
+                  placeholder='Titel'
+                  type='text'
+                />
+                {errors.title && (
+                  <div className='text-red-500'>{errors.title.message}</div>
+                )}
+              </label>
+              <label>
+                Beskrivelse
+                <textarea
+                  className='textarea'
+                  {...register('description', {
+                    required: {
+                      message: 'En beskrivelse er påkrævet',
+                      value: true
+                    }
+                  })}
+                  placeholder='Beskrivelse'
+                ></textarea>
+              </label>
+              <label>
+                Vælg destination
+                <select
+                  {...register('destinations', {
+                    required: {
+                      message: 'Destination er påkrævet',
+                      value: true
+                    }
+                  })}
+                  className='inputfield'
+                  name='destinations'
+                >
+                  <option value='Spanien'>Spanien</option>
+                  <option value='Italien'>Italien</option>
+                  <option value='Frankrig'>Frankrig</option>
+                  <option value='Sverige'>Sverige</option>
+                </select>
+              </label>
+              <label>
+                Vælg transportform
+                <select
+                  {...register('travelTypes', {
+                    required: {
+                      message: 'Transportmiddel er påkrævet',
+                      value: true
+                    }
+                  })}
+                  className='inputfield'
+                  name='travelTypes'
+                >
+                  <option value='Fly'>Fly</option>
+                  <option value='Bil'>Bil</option>
+                  <option value='Båd'>Båd</option>
+                  <option value='Cykel'>Cykel</option>
+                </select>
+              </label>
+              <label>
+                Vælg start dato
+                <input
+                  {...register('startDate', {
+                    required: { message: 'Startdato er påkrævet', value: true }
+                  })}
+                  placeholder='Start dato'
+                  className='inputfield'
+                  type='date'
+                />
+              </label>
+              <label>
+                Vælg slutdato
+                <input
+                  {...register('endDate', {
+                    required: { message: 'Slutdato er påkrævet', value: true }
+                  })}
+                  placeholder='Slut dato'
+                  className='inputfield'
+                  type='date'
+                />
+              </label>
               <button disabled={isSubmitting} className='button' type='submit'>
                 Opret rejse!
               </button>
