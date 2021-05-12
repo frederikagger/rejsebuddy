@@ -31,7 +31,7 @@ const CreatePost: NextPage = () => {
         <title>Opret Rejse | Rejse Buddy</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <AppLayout loading={loading}>
+      <AppLayout loading={loading} auth>
         <main>
           <div className='container mx-auto'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
