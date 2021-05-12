@@ -26,7 +26,10 @@ const Login: NextPage = () => {
     const { token } = await post(data)
     if (response.ok) {
       const { user } = jwt_decode(token) as { user: User }
-      document.cookie = 'token=' + token
+      document.cookie =
+        'token=' +
+        token +
+        '; expires=Fri, 31 Dec 2021 23:59:59 GMT; Path=/;'
       setUser(user)
     }
   })
