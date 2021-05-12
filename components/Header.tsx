@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import useUser from '../hooks/useUser'
-import { useRouter } from 'next/router'
 import ProfileItem from './ProfileItem'
 
 const Header: React.FC = () => {
@@ -10,10 +9,9 @@ const Header: React.FC = () => {
   const [user, setUser] = useUser()
 
   const logout: () => void = () => {
-    document.cookie =
-      'token=; expires = Thu, 01 Jan 1970 00:00:00 GMT;PATH=/app'
-    document.cookie = 'token=; expires = Thu, 01 Jan 1970 00:00:00 GMT;PATH=/' // this is a hack that solves that ensures the user is logged out
+    document.cookie = 'token=; expires = Thu, 01 Jan 1970 00:00:00 GMT; PATH=/'
     setUser(null)
+    setIsProfileOpen(false)
   }
 
   return (
@@ -79,8 +77,12 @@ const Header: React.FC = () => {
                   aria-expanded='false'
                 >
                   <img
-                    className='ml-3 rounded-full w-9 h-full fill-current text-primary'
-                    src='/images/user-white.svg'
+                    className='ml-3 rounded-full w-6 h-full fill-current text-primary'
+                    src={
+                      user?.avatar
+                        ? 'https://rejsebuddy.s3.amazonaws.com/' + user.avatar
+                        : '/images/user-white.svg'
+                    }
                     alt='avatar'
                   />
                   <div className='ml-3 text-primary'>
