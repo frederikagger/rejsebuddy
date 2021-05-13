@@ -1,16 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../utils/prisma'
-import { Post, User } from '.prisma/client'
-import jwt from 'jsonwebtoken'
+import prisma from '../../../utils/prisma'
+import auth from '../../../middleware/auth'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
+        const user = await auth(req, res)
         let { destinations, startDate, endDate, travelTypes, transportTypes, title, description } = req.body
         startDate = new Date(startDate)
         endDate = new Date(endDate)
-        const { token } = req.cookies
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const { user } = decoded as { user: User }
 
         const createdPost = await prisma.post.create({
             data: {
@@ -25,8 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             }
         })
         if (createdPost) {
-            prisma.$disconnect()
             return res.send(createdPost)
         }
     }
+
 }
