@@ -50,7 +50,7 @@ const App: NextPage = () => {
                   {'Fra ' + new Date(post?.startDate).toLocaleDateString()}
                   {' - ' + new Date(post?.endDate).toLocaleDateString()}
                 </p>
-                <Link href={'/app/user/' + post?.authorId}>
+                <Link href={'/app/profile/' + post?.authorId}>
                   <a>
                     <img
                       className='w-6 h-full rounded-full'
