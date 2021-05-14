@@ -1,26 +1,19 @@
-import { Post, User } from '.prisma/client'
+import { Destination, Post, User } from '.prisma/client'
+import Link from 'next/link'
 
 export interface PostAuthor extends Post {
-  author: Pick<User, 'firstname' | 'lastname'>
+  author: Pick<User, 'firstname' | 'lastname' | 'avatar'>
+  destinations: [Destination]
 }
 
 const PostComponent: React.FC<{ post: PostAuthor }> = ({ post }) => {
   return (
-    <div
-      onClick={() => console.log('click')}
-      className='card flex flex-col max-h-96 cursor-pointer'
-    >
-      <h2 className='mb-2'>{post.title}</h2>
-      <h4 className='mb-4'>{post.description}</h4>
-      <div className='flex flex-row justify-between'>
-        <p className='text-xs font-semibold'>
-          {post.author.firstname + ' ' + post.author.lastname}
-        </p>
-        <p className='text-xs font-semibold'>
-          {new Date(post.createdAt).toLocaleDateString()}
-        </p>
+    <Link href={'/app/post/' + post.id}>
+      <div className='card flex z-0 flex-col max-h-96 transition-transform transform-gpu duration-300 ease-in-out hover:-translate-y-2 hover:scale-110 cursor-pointer'>
+        <h3 className='mb-2'>{post.title}</h3>
+        <p className='mb-4 truncate'>{post.description}</p>
       </div>
-    </div>
+    </Link>
   )
 }
 

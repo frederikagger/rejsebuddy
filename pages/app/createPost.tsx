@@ -18,11 +18,15 @@ const CreatePost: NextPage = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors }
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async data => {
     await post(data)
+    if (response.ok) {
+      reset()
+    }
   })
 
   return (
@@ -33,7 +37,7 @@ const CreatePost: NextPage = () => {
       </Head>
       <AppLayout loading={loading} auth>
         <main>
-          <div className='container mx-auto'>
+          <div className='container mx-auto pb-20'>
             <form onSubmit={onSubmit} className='form flex flex-col gap-4'>
               <h1 className='text-center'>Opret rejse</h1>
               <label>

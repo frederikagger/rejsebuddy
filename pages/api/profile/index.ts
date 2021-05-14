@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../utils/prisma'
+import prisma from '../../../utils/prisma'
 import bcrypt from 'bcryptjs'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,4 +16,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
         return res.status(201).send(createUser)
     }
+
+  
 }
