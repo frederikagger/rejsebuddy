@@ -102,7 +102,7 @@ const Header: React.FC = () => {
                           <ProfileItem
                             title='Profile'
                             svgLink='/images/user.svg'
-                            link='/app/profile'
+                            link={'/app/profile/' + user.id}
                           />
                           <ProfileItem
                             title='Indstillinger'
