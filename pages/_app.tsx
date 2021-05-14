@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }) {
     <UserProvider>
       <div className='bg-primary min-h-screen'>
         <Header />
-        <div className='mt-20'>
+        <div className='mt-6 sm:mt-20'>
           <Component {...pageProps} />
         </div>
       </div>
