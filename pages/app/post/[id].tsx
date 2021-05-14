@@ -65,7 +65,7 @@ const App: NextPage = () => {
                   </a>
                 </Link>
                 <div className='-ml-2 col-span-5'>
-                  <Link href={'/app/user/' + post?.authorId}>
+                  <Link href={'/app/profile/' + post?.authorId}>
                     <a>
                       <p className='font-medium'>
                         {post?.author?.firstname + ' ' + post?.author?.lastname}
