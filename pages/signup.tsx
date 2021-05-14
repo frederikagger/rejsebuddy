@@ -18,7 +18,7 @@ type FormData = {
 }
 
 const Signup: NextPage = () => {
-  const { post, response, error, loading } = useFetch('/api/user')
+  const { post, response, error, loading } = useFetch('/api/profile')
   const router = useRouter()
   const {
     register,
