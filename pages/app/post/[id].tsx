@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import useFetch from 'use-http'
 import { useEffect, useState } from 'react'
 import { PostAuthor } from '../../../components/PostComponent'
+import Link from 'next/link'
+import posts from '../../api/posts'
 
 const App: NextPage = () => {
   const router = useRouter()
@@ -37,29 +39,56 @@ const App: NextPage = () => {
           <div className='max-w-7xl px-4 sm:px-6 mx-auto'>
             <div className='card w-full mx-auto pb-10'>
               <h1 className=''>{post?.title}</h1>
-              <p className='mt-6'>{post?.description}</p>
-              <hr className='mt-14' />
-              <div className='flex flex-col sm:flex-row items-start sm:items-center -mb-4 sm:justify-between mt-3'>
-                <p className='font-medium'>
-                  {' ' + new Date(post?.startDate).toLocaleDateString()}
+              <hr className='mt-3' />
+              <div className='grid w-64 grid-cols-6 gap-y-3 mb-6 mt-6'>
+                <img
+                  className='w-6 h-full row'
+                  src='/images/calendar.svg'
+                  alt='calendar'
+                />
+                <p className='font-medium -ml-2 col-span-5'>
+                  {'Fra ' + new Date(post?.startDate).toLocaleDateString()}
                   {' - ' + new Date(post?.endDate).toLocaleDateString()}
                 </p>
-                <div className='flex flex-row items-center gap-2'>
-                  <img
-                    className='w-8 h-full rounded-full'
-                    src={
-                      post?.author.avatar
-                        ? 'https://rejsebuddy.s3.amazonaws.com/' +
-                          post.author.avatar
-                        : '/images/user.svg'
-                    }
-                    alt='avatar'
-                  />
-                  <p className='font-medium'>
-                    {post?.author?.firstname + ' ' + post?.author?.lastname}
-                  </p>
+                <Link href={'/app/user/' + post?.authorId}>
+                  <a>
+                    <img
+                      className='w-6 h-full rounded-full'
+                      src={
+                        post?.author.avatar
+                          ? 'https://rejsebuddy.s3.amazonaws.com/' +
+                            post.author.avatar
+                          : '/images/user.svg'
+                      }
+                      alt='avatar'
+                    />
+                  </a>
+                </Link>
+                <div className='-ml-2 col-span-5'>
+                  <Link href={'/app/user/' + post?.authorId}>
+                    <a>
+                      <p className='font-medium'>
+                        {post?.author?.firstname + ' ' + post?.author?.lastname}
+                      </p>
+                    </a>
+                  </Link>
+                </div>
+                <img
+                  className='w-6 h-full gap-2'
+                  src='/images/location.svg'
+                  alt='location'
+                />
+                <div className='-ml-2 col-span-5 flex flex-row'>
+                  {post?.destinations.map(destination => (
+                    <p className='font-medium' key={destination.id}>
+                      {destination.name}
+                      {post?.destinations.length > 1 ? ', ' : ''}
+                    </p>
+                  ))}
                 </div>
               </div>
+              <hr className='' />
+              <p className='mt-6'>{post?.description}</p>
             </div>
           </div>
         </main>

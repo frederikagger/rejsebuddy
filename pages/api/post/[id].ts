@@ -12,6 +12,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     select: {
                         firstname: true, lastname: true, avatar: true
                     }
+                }, destinations: {
+                    select: {
+                        name: true, id: true
+                    }
                 }
             }
         })

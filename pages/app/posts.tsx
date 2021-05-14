@@ -6,12 +6,13 @@ import { useState, useEffect } from 'react'
 import PostComponent, { PostAuthor } from '../../components/PostComponent'
 
 const Posts: NextPage = () => {
-  const { loading, error, response, data } = useFetch('/api/posts', [])
+  const { loading, error, response, data, abort } = useFetch('/api/posts/', [])
   const [posts, setPosts] = useState<[PostAuthor]>()
 
   useEffect(() => {
-    if (response.ok) {
-      setPosts(data)
+    if (response.ok) setPosts(data)
+    return () => {
+      abort()
     }
   }, [data])
 
@@ -23,8 +24,8 @@ const Posts: NextPage = () => {
       </Head>
       <AppLayout loading={loading} auth>
         <main>
-          <div className='container mx-auto'>
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-10'>
+          <div className='max-w-7xl px-4 sm:px-6 mx-auto'>
+            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-10 sm:mx-0'>
               {posts?.map(post => (
                 <PostComponent post={post} key={post.id} />
               ))}
