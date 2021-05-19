@@ -32,7 +32,6 @@ const Profile: NextPage = () => {
 
   useEffect(() => {
     if (response.ok) {
-      setUser(data)
       setProfile(data)
     }
   }, [data])
