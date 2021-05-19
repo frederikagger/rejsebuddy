@@ -2,7 +2,7 @@ import { Destination, Post, User } from '.prisma/client'
 import Link from 'next/link'
 
 export interface PostAuthor extends Post {
-  author: Pick<User, 'firstname' | 'lastname' | 'avatar'>
+  author: Pick<User, 'firstname' | 'lastname' | 'avatarSmall'>
   destinations: [Destination]
 }
 

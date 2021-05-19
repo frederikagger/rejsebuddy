@@ -6,9 +6,8 @@ import useFetch from 'use-http'
 import { useEffect, useState } from 'react'
 import { PostAuthor } from '../../../components/PostComponent'
 import Link from 'next/link'
-import posts from '../../api/posts'
 
-const App: NextPage = () => {
+const Post: NextPage = () => {
   const router = useRouter()
   const { id } = router.query
   const [post, setPost] = useState<PostAuthor>()
@@ -55,9 +54,9 @@ const App: NextPage = () => {
                     <img
                       className='w-6 h-full rounded-full'
                       src={
-                        post?.author.avatar
-                          ? 'https://rejsebuddy.s3.amazonaws.com/' +
-                            post.author.avatar
+                        post?.author.avatarSmall
+                          ? process.env.NEXT_PUBLIC_AWS_S3_URL +
+                            post.author.avatarSmall
                           : '/images/user.svg'
                       }
                       alt='avatar'
@@ -97,4 +96,4 @@ const App: NextPage = () => {
   )
 }
 
-export default App
+export default Post
