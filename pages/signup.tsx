@@ -6,7 +6,6 @@ import useFetch from 'use-http'
 import { useRouter } from 'next/router'
 import AppLayout from '../components/AppLayout'
 
-
 type FormData = {
   firstname: string
   lastname: string
@@ -51,11 +50,10 @@ const Signup: NextPage = () => {
                   placeholder='Fornavn'
                   className='inputfield'
                   type='text'
+                  autoComplete='name'
                 />
                 {errors.firstname && (
-                  <div className='text-red-500'>
-                    {errors.firstname.message}
-                  </div>
+                  <div className='text-red-500'>{errors.firstname.message}</div>
                 )}
               </label>
               <label>
@@ -67,15 +65,14 @@ const Signup: NextPage = () => {
                   placeholder='Efternavn'
                   className='inputfield'
                   type='text'
+                  autoComplete='family-name'
                 />
                 {errors.lastname && (
-                  <div className='text-red-500'>
-                    {errors.lastname.message}
-                  </div>
+                  <div className='text-red-500'>{errors.lastname.message}</div>
                 )}
               </label>
               <label>
-                Kodeord
+                Password
                 <input
                   {...register('password', {
                     minLength: {
@@ -87,11 +84,10 @@ const Signup: NextPage = () => {
                   placeholder='Password'
                   className='inputfield'
                   type='password'
+                  autoComplete='current-password'
                 />
                 {errors.password && (
-                  <div className='text-red-500'>
-                    {errors.password.message}
-                  </div>
+                  <div className='text-red-500'>{errors.password.message}</div>
                 )}
               </label>
               <label>
@@ -107,6 +103,7 @@ const Signup: NextPage = () => {
                   placeholder='Email'
                   className='inputfield'
                   type='email'
+                  autoComplete='email'
                 />
                 {errors.email && (
                   <div className='text-red-500'> {errors.email.message} </div>
@@ -121,6 +118,7 @@ const Signup: NextPage = () => {
                   placeholder='By'
                   className='inputfield'
                   type='text'
+                  autoComplete='address-level3'
                 />
                 {errors.city && (
                   <div className='text-red-500'> {errors.city.message} </div>
@@ -138,11 +136,10 @@ const Signup: NextPage = () => {
                   placeholder='Fødselsdag'
                   className='inputfield'
                   type='date'
+                  autoComplete='bday'
                 />
                 {errors.birthday && (
-                  <div className='text-red-500'>
-                    {errors.birthday.message}
-                  </div>
+                  <div className='text-red-500'>{errors.birthday.message}</div>
                 )}
               </label>
               <label>

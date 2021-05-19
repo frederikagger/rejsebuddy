@@ -2,16 +2,29 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import AppLayout from '../../components/AppLayout'
 import useFetch from 'use-http'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
+import Select from 'react-select'
+import ReactDatePicker from 'react-datepicker'
 
 type FormData = {
   title: string
   description: string
-  destinations: string[]
-  travelTypes: string[]
+  destinations: destination[]
+  travelTypes: []
   startDate: Date
   endDate: Date
 }
+
+type destination = {
+  value: string
+  label: string
+}
+
+const options: destination[] = [
+  { value: 'danmark', label: 'Danmark' },
+  { value: 'sverige', label: 'Sverige' },
+  { value: 'spanien', label: 'Spanien' }
+]
 
 const CreatePost: NextPage = () => {
   const { post, loading, error, response } = useFetch('/api/post')
@@ -19,11 +32,13 @@ const CreatePost: NextPage = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { isSubmitting, errors }
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async data => {
-    await post(data)
+    console.log(data)
+    //await post(data)
     if (response.ok) {
       reset()
     }
@@ -73,25 +88,46 @@ const CreatePost: NextPage = () => {
                     }
                   })}
                   placeholder='Beskrivelse'
-                ></textarea>
+                />
               </label>
               <label>
                 Vælg destination
-                <select
+                <Controller
+                  name='destinations'
+                  control={control}
+                  render={({
+                    field: { onChange, onBlur, value, ref, name }
+                  }) => (
+                    <Select
+                      instanceId={name}
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      selected={value}
+                      options={options}
+                      name={name}
+                      isMulti
+                      isSearchable
+                    />
+                  )}
+                />
+                {/*  { <Select
+                  options={options}
                   {...register('destinations', {
                     required: {
                       message: 'Destination er påkrævet',
                       value: true
                     }
                   })}
-                  className='inputfield'
+                  
+                  className=''
                   name='destinations'
-                >
+                />}
+                { <select>
                   <option value='Spanien'>Spanien</option>
                   <option value='Italien'>Italien</option>
                   <option value='Frankrig'>Frankrig</option>
                   <option value='Sverige'>Sverige</option>
-                </select>
+                </select>} */}
               </label>
               <label>
                 Vælg transportform
@@ -111,7 +147,7 @@ const CreatePost: NextPage = () => {
                   <option value='Cykel'>Cykel</option>
                 </select>
               </label>
-              <label>
+              {/*  <label>
                 Vælg start dato
                 <input
                   {...register('startDate', {
@@ -121,7 +157,19 @@ const CreatePost: NextPage = () => {
                   className='inputfield'
                   type='date'
                 />
-              </label>
+              </label> */}
+              <Controller
+                control={control}
+                name='startDate'
+                render={({ field: { onChange, onBlur, value, ref } }) => (
+                  <ReactDatePicker
+                  
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    selected={value}
+                  />
+                )}
+              />
               <label>
                 Vælg slutdato
                 <input
