@@ -15,7 +15,8 @@ model User {
   firstname   String
   lastname    String
   email       String   @unique
-  avatar      String?
+  avatarBig   String?
+  avatarSmall String?
   city        String
   birthday    DateTime @db.DateTime
   profileText String
