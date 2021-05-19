@@ -109,7 +109,7 @@ const Header: React.FC = () => {
                           <ProfileItem
                             title='Indstillinger'
                             svgLink='/images/settings.svg'
-                            link='/app/settings'
+                            link='/app/settings/'
                           />
                           <ProfileItem
                             onClick={logout}
