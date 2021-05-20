@@ -1,13 +1,23 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import AppLayout from '../../components/AppLayout'
-import useFetch from 'use-http'
+import useFetch, { CachePolicies } from 'use-http'
 import { useState, useEffect } from 'react'
 import PostComponent, { PostAuthor } from '../../components/PostComponent'
 
 const Posts: NextPage = () => {
-  const { loading, error, response, data, abort } = useFetch('/api/posts/', [])
+  const { get, loading, error, response, data, abort } = useFetch(
+    '/api/posts',
+    { cachePolicy: CachePolicies.NO_CACHE }
+  )
+
   const [posts, setPosts] = useState<[PostAuthor]>()
+  useEffect(() => {
+    get()
+    return () => {
+      abort()
+    }
+  }, [])
 
   useEffect(() => {
     if (response.ok) setPosts(data)

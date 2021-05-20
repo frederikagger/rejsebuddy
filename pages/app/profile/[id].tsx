@@ -3,7 +3,7 @@ import Head from 'next/head'
 import useUser from '../../../hooks/useUser'
 import AppLayout from '../../../components/AppLayout'
 import { useRouter } from 'next/router'
-import useFetch from 'use-http'
+import useFetch, { CachePolicies } from 'use-http'
 import { useEffect, useState } from 'react'
 import { User } from '.prisma/client'
 
@@ -12,22 +12,26 @@ const Profile: NextPage = () => {
   const router = useRouter()
   const [profile, setProfile] = useState<User>()
   const { id } = router.query
-  const { get, loading, error, response, data, patch } = useFetch(
-    '/api/profile/' + id
-  )
+  const {
+    get,
+    loading,
+    error,
+    response,
+    data,
+    patch
+  } = useFetch('/api/profile/' + id, { cachePolicy: CachePolicies.NO_CACHE })
 
   const isUsersOwnProfilePage = id === user?.id.toString()
 
   const uploadImage: (file: File) => void = async file => {
     const data = new FormData()
     data.append('avatar', file)
-    await patch('/upload', data)
+    const user = await patch('/upload', data)
+    setUser(user)
   }
 
   useEffect(() => {
-    if (id && !isUsersOwnProfilePage) {
-      get()
-    }
+    if (id && !isUsersOwnProfilePage) get()
   }, [])
 
   useEffect(() => {
@@ -48,8 +52,8 @@ const Profile: NextPage = () => {
         <AppLayout auth loading={loading}>
           <main>
             <div className='max-w-7xl h-96 card px-4 sm:px-6 mx-auto'>
-              <div className='grid grid-cols-12'>
-                <div className='col-span-3 gap-4'>
+              <div className='grid grid-cols-12 gap-10'>
+                <div className='col-span-3'>
                   <img
                     className='object-cover bg-no-repeat items-center mb-4'
                     src={
@@ -68,9 +72,12 @@ const Profile: NextPage = () => {
                   />
                   <label htmlFor='files' className='custom-file-input' />
                 </div>
-                <h1 className='mb-6 col-span-8'>
-                  {user?.firstname} {user?.lastname}
-                </h1>
+                <div className='mb-6 col-span-9'>
+                  <h1>
+                    {user?.firstname} {user?.lastname}
+                  </h1>
+                  <h5 className='mt-4'>{user?.profileText}</h5>
+                </div>
               </div>
             </div>
           </main>

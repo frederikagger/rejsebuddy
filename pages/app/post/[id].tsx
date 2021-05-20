@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import AppLayout from '../../../components/AppLayout'
 import { useRouter } from 'next/router'
-import useFetch from 'use-http'
+import useFetch, { CachePolicies } from 'use-http'
 import { useEffect, useState } from 'react'
 import { PostAuthor } from '../../../components/PostComponent'
 import Link from 'next/link'
@@ -13,15 +13,17 @@ const Post: NextPage = () => {
   const [post, setPost] = useState<PostAuthor>()
 
   const { loading, error, response, data, get, abort } = useFetch(
-    '/api/post/' + id
+    '/api/post/' + id,
+    { cachePolicy: CachePolicies.NO_CACHE }
   )
 
   useEffect(() => {
-    if (id) get()
+    if (!router.isReady) return
+    get()
     return () => {
       abort()
     }
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (response.ok) setPost(data)
