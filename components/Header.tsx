@@ -77,10 +77,10 @@ const Header: React.FC = () => {
                   aria-expanded='false'
                 >
                   <img
-                    className='ml-3 rounded-full w-6 h-full fill-current text-primary'
+                    className='ml-3 rounded-full w-8 h-full fill-current text-primary'
                     src={
-                      user?.avatar
-                        ? 'https://rejsebuddy.s3.amazonaws.com/' + user.avatar
+                      user?.avatarSmall
+                        ? process.env.NEXT_PUBLIC_AWS_S3_URL + user.avatarSmall
                         : '/images/user-white.svg'
                     }
                     alt='avatar'

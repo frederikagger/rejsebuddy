@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             include: {
                 author: {
                     select: {
-                        firstname: true, lastname: true, avatar: true
+                        firstname: true, lastname: true, avatarSmall: true
                     }
                 }
             }
