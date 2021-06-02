@@ -4,7 +4,6 @@ import prisma from '../../../../utils/prisma'
 import upload from '../../../../utils/upload'
 import resizeImage from '../../../../utils/resizeImage'
 import { uploadS3 } from '../../../../utils/AWS-S3'
-
 export interface MulterFile {
     fieldname: string,
     originalname: string,
@@ -13,12 +12,10 @@ export interface MulterFile {
     buffer: Buffer,
     size: number
 }
-
 export interface NextApiRequestExtented extends NextApiRequest {
     file: MulterFile
     avatarPathBig: string | undefined
     avatarPathSmall: string | undefined
-
 }
 
 export default nextConnect<NextApiRequestExtented, NextApiResponse>()

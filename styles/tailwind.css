@@ -14,7 +14,15 @@
   }
 
   h3 {
-    @apply text-xl font-bold text-secondary;
+    @apply text-xl font-semibold text-secondary;
+  }
+
+  h4 {
+    @apply text-lg font-semibold text-secondary;
+  }
+
+  h5 {
+    @apply text-base font-semibold text-secondary;
   }
 
   p {
@@ -37,25 +45,18 @@
     visibility: hidden;
   }
   .custom-file-input::before {
+    @apply rounded-lg inline-block border-2 border-secondary font-semibold cursor-pointer bg-white text-secondary;
     content: 'Skift profilbillede';
-    display: inline-block;
-    background: linear-gradient(to left top, #f9f9f9, #e3e3e3);
-    border: 1px solid #999;
-    border-radius: 3px;
     padding: 5px 8px;
-    outline: none;
     white-space: nowrap;
     -webkit-user-select: none;
-    cursor: pointer;
-    text-shadow: 1px 1px #fff;
-    font-weight: 700;
     font-size: 10pt;
   }
   .custom-file-input:hover::before {
     border-color: black;
   }
   .custom-file-input:active::before {
-    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+    background: -webkit-linear-gradient(top, @apply bg-secondary, #f9f9f9);
   }
 }
 

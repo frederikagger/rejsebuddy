@@ -98,7 +98,7 @@ const Header: React.FC = () => {
                 </button>
                 <div className='relative'>
                   {isProfileOpen && (
-                    <div className='absolute z-10 -ml-4 mt-3 transform px-2 w-60 sm:px-0 right-0 lg:left-0'>
+                    <div className='absolute z-10 -ml-4 mt-3 px-2 w-60 sm:px-0 right-0 lg:left-0'>
                       <div className='rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden'>
                         <div className='relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8'>
                           <ProfileItem
