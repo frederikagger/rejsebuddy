@@ -12,7 +12,7 @@ const uploadS3: (image: Buffer, userId: string) => Promise<string> = async (imag
     const name = userId + now + '.webp'
     await S3client.putObject({
         Key: name,
-        Bucket: process.env.AWS_BUCKET_NAME,
+        Bucket: process.env.BUCKET_NAME,
         ContentType: 'image/webp',
         Body: image,
         ACL: 'public-read'
