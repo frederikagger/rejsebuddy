@@ -27,8 +27,11 @@ const Profile: NextPage = () => {
   const uploadImage: (file: File) => void = async file => {
     const data = new FormData()
     data.append('avatar', file)
-    const user = await patch('/upload', data)
-    setUser(user)
+    let userObject = await patch('/upload', data)
+    if (response.ok) {
+      const user = userObject as User
+      setUser(user)
+    }
   }
 
   useEffect(() => {
@@ -38,6 +41,7 @@ const Profile: NextPage = () => {
   useEffect(() => {
     if (response.ok) {
       setProfile(data)
+      return
     }
   }, [data])
 
