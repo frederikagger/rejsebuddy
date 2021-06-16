@@ -15,7 +15,8 @@ model User {
   firstname   String
   lastname    String
   email       String   @unique
-  avatar      String?
+  avatarBig   String?
+  avatarSmall String?
   city        String
   birthday    DateTime @db.DateTime
   profileText String
@@ -29,9 +30,11 @@ model User {
 
 model Post {
   id             Int             @id @default(autoincrement())
-  author         User            @relation(fields: [id], references: [id])
+  title          String
+  author         User            @relation(fields: [authorId], references: [id])
+  authorId       Int
   destinations   Destination[]   @relation(references: [id])
-  description    String
+  description    String          @db.Text
   travelTypes    TravelType[]    @relation(references: [id])
   transportTypes TransportType[] @relation(references: [id])
   startDate      DateTime        @db.Date

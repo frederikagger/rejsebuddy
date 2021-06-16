@@ -10,11 +10,23 @@
   }
 
   h2 {
-    @apply text-2xl font-medium;
+    @apply text-2xl font-medium text-secondary;
   }
 
   h3 {
-    @apply text-xl font-bold;
+    @apply text-xl font-semibold text-secondary;
+  }
+
+  h4 {
+    @apply text-lg font-semibold text-secondary;
+  }
+
+  h5 {
+    @apply text-base font-semibold text-secondary;
+  }
+
+  p {
+    @apply text-secondary;
   }
 
   button:focus {
@@ -29,6 +41,23 @@
     @apply bg-gray-500;
     border-radius: 10px;
   }
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    @apply rounded-lg inline-block border-2 border-secondary font-semibold cursor-pointer bg-white text-secondary;
+    content: 'Skift profilbillede';
+    padding: 5px 8px;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    font-size: 10pt;
+  }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, @apply bg-secondary, #f9f9f9);
+  }
 }
 
 @layer components {
@@ -40,5 +69,14 @@
   }
   .button {
     @apply text-secondary border rounded-md hover:bg-secondary hover:text-white border-secondary font-semibold w-full py-2 px-2 appearance-none;
+  }
+  .ctabutton {
+    @apply whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-primary rounded-md shadow-sm text-base font-medium text-primary hover:underline appearance-none;
+  }
+  .form {
+    @apply max-w-xl bg-white rounded-lg mx-auto pt-3 pb-7 px-10;
+  }
+  .card {
+    @apply bg-white rounded-lg overflow-hidden shadow px-6 py-4;
   }
 }
