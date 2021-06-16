@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import useUser from '../hooks/useUser'
 import ProfileItem from './ProfileItem'
@@ -7,6 +7,22 @@ const Header: React.FC = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false)
   const [user, setUser] = useUser()
+  const node = useRef<HTMLInputElement>()
+
+  const handleClickOutside: (e: Event) => void = e => {
+    if (node.current && !node.current.contains(e.target as Element)) {
+      setIsProfileOpen(false) // outside click
+    }
+  }
+
+  useEffect(() => {
+    isProfileOpen
+      ? document.addEventListener('click', handleClickOutside)
+      : document.removeEventListener('click', handleClickOutside)
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [isProfileOpen])
 
   const logout: () => void = () => {
     document.cookie = 'token=; expires = Thu, 01 Jan 1970 00:00:00 GMT; PATH=/'
@@ -72,9 +88,10 @@ const Header: React.FC = () => {
             {user ? (
               <div>
                 <button
-                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  onClick={() => setIsProfileOpen(true)}
                   className='inline-flex items-center text-base font-medium'
                   aria-expanded='false'
+                  disabled={isProfileOpen}
                 >
                   <img
                     className='ml-3 rounded-full w-8 h-full fill-current text-primary'
@@ -96,7 +113,7 @@ const Header: React.FC = () => {
                     alt='down-chevron icon'
                   />
                 </button>
-                <div className='relative'>
+                <div ref={node} className='relative'>
                   {isProfileOpen && (
                     <div className='absolute z-10 -ml-4 mt-3 px-2 w-60 sm:px-0 right-0 lg:left-0'>
                       <div className='rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden'>
@@ -175,7 +192,7 @@ const Header: React.FC = () => {
                 <nav className='grid gap-y-8'></nav>
               </div>
             </div>
-            <div className='py-6 px-5 space-y-6'>
+            <div className='py-6 px- space-y-6'>
               <div>
                 {user && (
                   <button

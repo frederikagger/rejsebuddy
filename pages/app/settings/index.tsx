@@ -11,7 +11,7 @@ const ProfileSettingPageID: NextPage = () => {
     '/api/profile/' + user?.id
   )
 
-  const DeleteUser = async () => {
+  const deleteUser = async () => {
     await del()
     if (response.ok) {
       document.cookie =
@@ -23,16 +23,14 @@ const ProfileSettingPageID: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>{user?.firstname}'s Profilindstillinger | Rejse Buddy</title>
+        <title>{user?.firstname}s indstillinger | Rejse Buddy </title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <AppLayout auth loading={loading}>
         <main className='container mx-auto'>
           <div className='card text-center'>
-            <h1>
-              Profilindstillinger for {user?.firstname} {user?.lastname}
-            </h1>
-            <button className='ctabutton bg-red-600 mt-32' onClick={DeleteUser}>
+            <h1>Indstillinger</h1>
+            <button className='ctabutton bg-red-400 mt-32' onClick={deleteUser}>
               Slet Profil
             </button>
           </div>
