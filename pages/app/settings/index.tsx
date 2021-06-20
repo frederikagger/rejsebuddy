@@ -10,7 +10,7 @@ const ProfileSettingPageID: NextPage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const node = useRef<HTMLInputElement>()
 
-  const { loading, error, response, del } = useFetch(
+  const { loading, error, response, del, cache } = useFetch(
     '/api/profile/' + user?.id
   )
 
@@ -30,6 +30,7 @@ const ProfileSettingPageID: NextPage = () => {
   }, [isDialogOpen])
 
   const deleteUser = async () => {
+    cache.clear()
     await del()
     if (response.ok) {
       document.cookie =
