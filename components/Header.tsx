@@ -36,7 +36,7 @@ const Header: React.FC = () => {
         <div className='flex justify-between items-center py-2 sm:py-3 md:justify-start md:space-x-10'>
           <div className='flex justify-start lg:w-0 lg:flex-1'>
             <span className='sr-only'>Home</span>
-            <Link href='/app'>
+            <Link href={user ? '/app' : '/'}>
               <a>
                 <img
                   className='h-8 w-auto sm:h-12'
