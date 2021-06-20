@@ -5,7 +5,7 @@ import { UserProvider } from '../components/UserContext'
 function MyApp({ Component, pageProps }) {
   return (
     <UserProvider>
-      <div className='bg-primary min-h-screen'>
+      <div className='bg-primary min-h-screen relative'>
         <Header />
         <div className='mt-6 sm:mt-20'>
           <Component {...pageProps} />

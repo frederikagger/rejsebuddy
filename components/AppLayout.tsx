@@ -40,7 +40,7 @@ const AppLayout: React.FC<{ loading?: boolean; auth?: boolean }> = ({
 
   if (loading) return <LoadingSpinner />
 
-  return <div>{children}</div>
+  return <>{children}</>
 }
 
 export default AppLayout
