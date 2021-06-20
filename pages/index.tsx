@@ -1,13 +1,8 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
-import { useFetch, CachePolicies } from 'use-http'
 
 const Home: NextPage = () => {
-  const { get, loading, error, response, data, abort } = useFetch(
-    '/api/posts',
-    { cachePolicy: CachePolicies.NO_CACHE }
-  )
   return (
     <div>
       <Head>
