@@ -10,8 +10,8 @@ const Posts: NextPage = () => {
     '/api/posts',
     { cachePolicy: CachePolicies.NO_CACHE }
   )
-
   const [posts, setPosts] = useState<[PostAuthor]>()
+
   useEffect(() => {
     get()
     return () => {
