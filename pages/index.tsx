@@ -1,11 +1,13 @@
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import Head from 'next/head'
-import { User } from 'prisma/prisma-client'
-import prisma from '../utils/prisma'
 import AppLayout from '../components/AppLayout'
+import { useFetch, CachePolicies } from 'use-http'
 
-
-const Home: NextPage<{ users: User[] }> = ({ users }) => {
+const Home: NextPage = () => {
+  const { get, loading, error, response, data, abort } = useFetch(
+    '/api/posts',
+    { cachePolicy: CachePolicies.NO_CACHE }
+  )
   return (
     <div>
       <Head>
@@ -13,30 +15,16 @@ const Home: NextPage<{ users: User[] }> = ({ users }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <AppLayout>
-        <main>
-          {users.length === 0 ? (
-            <div> Ingen brugere! </div>
-          ) : (
-            <div className='text-center text-2xl'>
-              {users.map(user => (
-                <h1 className='' key={user.id}>
-                  hej {user.firstname}
-                </h1>
-              ))}
-            </div>
-          )}
+        <main className='max-w-sm absolute top-1/4 left-1/2 transform-gpu -translate-x-1/2 -translate-y-1/2'>
+          <h1 className='text-6xl mb-5'>Rejsebuddy</h1>
+          <hr />
+          <h4 className=''>
+            <i>- En digital rejseplatform</i>
+          </h4>
         </main>
       </AppLayout>
     </div>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  let users = await prisma.user.findMany()
-  users = JSON.parse(JSON.stringify(users)) // this is done because createdAt and updatedAt is not automatically being transformed to JSON
-  return {
-    props: { users }
-  }
 }
 
 export default Home
